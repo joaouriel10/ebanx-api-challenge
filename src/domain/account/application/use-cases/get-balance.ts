@@ -11,7 +11,7 @@ type GetBalanceResponse = Either<
 	}
 >;
 
-export class GetBalance {
+export class GetBalanceUseCase {
 	constructor(private accountRepository: AccountRepository) {}
 
 	public execute({ accountId }: GetBalanceProps): GetBalanceResponse {
