@@ -4,7 +4,7 @@ import { AccountNotFoundError } from "./errors/account-not-found-error";
 import { InvalidDepositAmountError } from "./errors/invalid-deposit-amount-error";
 
 type DepositProps = {
-	destination: number;
+	destination: string;
 	amount: number;
 };
 

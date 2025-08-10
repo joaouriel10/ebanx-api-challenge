@@ -25,7 +25,7 @@ describe("Get Balance", () => {
 	});
 
 	it("should not be able to get a non-existent account", async () => {
-		const result = sut.execute({ accountId: 999 });
+		const result = sut.execute({ accountId: "non-existent-account-id" });
 
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toMatchObject({

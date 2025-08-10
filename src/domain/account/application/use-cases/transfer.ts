@@ -5,8 +5,8 @@ import { InsufficientFundsError } from "./errors/insufficient-funds-error";
 import { InvalidTransferAmountError } from "./errors/invalid-transfer-amount-error";
 
 type TransferProps = {
-	origin: number;
-	destination: number;
+	origin: string;
+	destination: string;
 	amount: number;
 };
 

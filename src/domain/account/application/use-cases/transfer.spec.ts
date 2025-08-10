@@ -12,8 +12,8 @@ describe("Transfer", () => {
 	});
 
 	it("should be able to transfer money", async () => {
-		const account = makeAccount({ balance: 100 }, 1);
-		const accountDestination = makeAccount({ balance: 0 }, 2);
+		const account = makeAccount({ balance: 100 }, "1");
+		const accountDestination = makeAccount({ balance: 0 }, "2");
 
 		inMemoryAccountRepository.save(account);
 		inMemoryAccountRepository.save(accountDestination);
@@ -44,7 +44,7 @@ describe("Transfer", () => {
 		const result = sut.execute({
 			amount: 50,
 			destination: accountDestination.id,
-			origin: 888,
+			origin: "non-existent-account-id",
 		});
 
 		expect(result.isLeft()).toBeTruthy();
@@ -59,7 +59,7 @@ describe("Transfer", () => {
 
 		const result = sut.execute({
 			amount: 50,
-			destination: 999,
+			destination: "non-existent-destination-id",
 			origin: account.id,
 		});
 
