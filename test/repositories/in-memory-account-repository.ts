@@ -11,4 +11,11 @@ export class InMemoryAccountRepository implements AccountRepository {
 	public save(account: Account): void {
 		this.items.push(account);
 	}
+
+	public update(account: Account): void {
+		const index = this.items.findIndex((item) => item.id === account.id);
+		if (index !== -1) {
+			this.items[index] = account;
+		}
+	}
 }

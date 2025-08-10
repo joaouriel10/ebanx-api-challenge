@@ -21,6 +21,10 @@ export class Account extends Entity<AccountProps> {
 		return this.props.updatedAt;
 	}
 
+	set balance(value: number) {
+		this.props.balance = value;
+	}
+
 	touch() {
 		this.props.updatedAt = new Date();
 	}
