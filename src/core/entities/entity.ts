@@ -1,17 +1,17 @@
-export abstract class Entity<T> {
-	private _id: number;
-	protected props: T;
+export abstract class Entity<Props> {
+	private _id: string;
+	protected props: Props;
 
 	get id() {
 		return this._id;
 	}
 
-	protected constructor(props: T, id?: number) {
+	protected constructor(props: Props, id?: string) {
 		this.props = props;
-		this._id = id ?? 1;
+		this._id = id ?? crypto.randomUUID();
 	}
 
-	public equals(entity: Entity<any>) {
+	public equals(entity: Entity<unknown>) {
 		if (entity === this) {
 			return true;
 		}

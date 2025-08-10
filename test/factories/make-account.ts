@@ -3,7 +3,7 @@ import {
 	type AccountProps,
 } from "@/domain/account/enterprise/entities/account";
 
-export function makeAccount(override: Partial<AccountProps> = {}, id?: number) {
+export function makeAccount(override: Partial<AccountProps> = {}, id?: string) {
 	const account = Account.create(
 		{
 			balance: 0,

@@ -2,7 +2,7 @@ import { type Either, left, right } from "@/core/either";
 import type { AccountRepository } from "../repositories/account-repository";
 import { AccountNotFoundError } from "./errors/account-not-found-error";
 
-type GetBalanceProps = { accountId: number };
+type GetBalanceProps = { accountId: string };
 
 type GetBalanceResponse = Either<
 	AccountNotFoundError,

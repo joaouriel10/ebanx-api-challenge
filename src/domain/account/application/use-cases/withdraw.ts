@@ -5,7 +5,7 @@ import { InsufficientFundsError } from "./errors/insufficient-funds-error";
 import { InvalidWithdrawAmountError } from "./errors/invalid-withdraw-amount-error";
 
 type WithdrawProps = {
-	destination: number;
+	destination: string;
 	amount: number;
 };
 

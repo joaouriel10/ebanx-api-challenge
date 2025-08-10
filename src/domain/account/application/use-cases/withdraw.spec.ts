@@ -28,7 +28,10 @@ describe("Withdraw", () => {
 	});
 
 	it("should not be able to withdraw from a non-existent account", async () => {
-		const result = sut.execute({ amount: 50, destination: 999 });
+		const result = sut.execute({
+			amount: 50,
+			destination: "non-existent-account-id",
+		});
 
 		expect(result.isLeft()).toBeTruthy();
 		expect(result.value).toMatchObject({

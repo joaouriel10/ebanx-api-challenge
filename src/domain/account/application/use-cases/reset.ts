@@ -15,7 +15,7 @@ export class ResetUseCase {
 				{
 					balance: 0,
 				},
-				100,
+				"100",
 			),
 		);
 
@@ -24,7 +24,7 @@ export class ResetUseCase {
 				{
 					balance: 0,
 				},
-				300,
+				"300",
 			),
 		);
 

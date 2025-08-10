@@ -2,7 +2,7 @@ import { Entity } from "@/core/entities/entity";
 import type { Optional } from "@/core/types/optional";
 
 export type AccountProps = {
-	id?: number;
+	id?: string;
 	balance: number;
 	createdAt: Date;
 	updatedAt?: Date | null;
@@ -29,7 +29,7 @@ export class Account extends Entity<AccountProps> {
 		this.props.updatedAt = new Date();
 	}
 
-	static create(props: Optional<AccountProps, "createdAt">, id?: number) {
+	static create(props: Optional<AccountProps, "createdAt">, id?: string) {
 		const account = new Account(
 			{
 				...props,
