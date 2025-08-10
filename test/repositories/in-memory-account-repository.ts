@@ -18,4 +18,8 @@ export class InMemoryAccountRepository implements AccountRepository {
 			this.items[index] = account;
 		}
 	}
+
+	public reset(): void {
+		this.items = [];
+	}
 }
