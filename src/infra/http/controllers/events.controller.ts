@@ -18,7 +18,7 @@ export class EventsController {
 	) {}
 
 	@Post("event")
-	handle(@Body() body: EventDTO, @Res() reply: FastifyReply) {
+	async handle(@Body() body: EventDTO, @Res() reply: FastifyReply) {
 		switch (body.type) {
 			case "deposit": {
 				const depositResult = this.depositUseCase.execute({

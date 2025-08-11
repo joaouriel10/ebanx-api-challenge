@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Either, left, right } from "@/core/either";
+import { Either, right } from "@/core/either";
 import { Account } from "../../enterprise/entities/account";
 import { AccountRepository } from "../repositories/account-repository";
 import { AccountNotFoundError } from "./errors/account-not-found-error";

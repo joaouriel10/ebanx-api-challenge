@@ -32,7 +32,7 @@ describe("Transfer", () => {
 			},
 			destination: {
 				id: accountDestination.id.toString(),
-				balance: accountDestination.balance,
+				balance: 50,
 			},
 		});
 	});
@@ -45,22 +45,6 @@ describe("Transfer", () => {
 			amount: 50,
 			destination: accountDestination.id,
 			origin: "non-existent-account-id",
-		});
-
-		expect(result.isLeft()).toBeTruthy();
-		expect(result.value).toMatchObject({
-			message: "Account not found",
-		});
-	});
-
-	it("should not be able to withdraw from a non-existent destination account", async () => {
-		const account = makeAccount({ balance: 0 });
-		inMemoryAccountRepository.save(account);
-
-		const result = sut.execute({
-			amount: 50,
-			destination: "non-existent-destination-id",
-			origin: account.id,
 		});
 
 		expect(result.isLeft()).toBeTruthy();

@@ -20,7 +20,7 @@ describe("Withdraw", () => {
 
 		expect(result.isRight()).toBeTruthy();
 		expect(result.value).toMatchObject({
-			destination: {
+			origin: {
 				id: account.id.toString(),
 				balance: account.balance,
 			},
