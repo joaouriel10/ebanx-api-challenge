@@ -1,5 +1,5 @@
 import { Entity } from "@/core/entities/entity";
-import type { Optional } from "@/core/types/optional";
+import { Optional } from "@/core/types/optional";
 
 export type AccountProps = {
 	id?: string;

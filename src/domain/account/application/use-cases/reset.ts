@@ -1,33 +1,15 @@
+import { Injectable } from "@nestjs/common";
 import { type Either, right } from "@/core/either";
-import { Account } from "../../enterprise/entities/account";
-import type { AccountRepository } from "../repositories/account-repository";
+import { AccountRepository } from "../repositories/account-repository";
 
 type ResetResponse = Either<null, null>;
 
+@Injectable()
 export class ResetUseCase {
 	constructor(private accountRepository: AccountRepository) {}
 
 	public execute(): ResetResponse {
 		this.accountRepository.reset();
-
-		this.accountRepository.save(
-			Account.create(
-				{
-					balance: 0,
-				},
-				"100",
-			),
-		);
-
-		this.accountRepository.save(
-			Account.create(
-				{
-					balance: 0,
-				},
-				"300",
-			),
-		);
-
 		return right(null);
 	}
 }

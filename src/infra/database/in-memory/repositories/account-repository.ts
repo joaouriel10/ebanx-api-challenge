@@ -1,8 +1,10 @@
+import { Injectable } from "@nestjs/common";
 import { AccountRepository } from "@/domain/account/application/repositories/account-repository";
 import { Account } from "@/domain/account/enterprise/entities/account";
 
+@Injectable()
 export class InMemoryAccountRepository implements AccountRepository {
-	public items: Account[] = [];
+	private items: Account[] = [];
 
 	public findById(id: string): Account | null {
 		return this.items.find((item) => item.id === id) || null;

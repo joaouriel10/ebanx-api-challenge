@@ -1,5 +1,6 @@
-import { type Either, left, right } from "@/core/either";
-import type { AccountRepository } from "../repositories/account-repository";
+import { Injectable } from "@nestjs/common";
+import { Either, left, right } from "@/core/either";
+import { AccountRepository } from "../repositories/account-repository";
 import { AccountNotFoundError } from "./errors/account-not-found-error";
 
 type GetBalanceProps = { accountId: string };
@@ -10,7 +11,7 @@ type GetBalanceResponse = Either<
 		balance: number;
 	}
 >;
-
+@Injectable()
 export class GetBalanceUseCase {
 	constructor(private accountRepository: AccountRepository) {}
 

@@ -1,5 +1,6 @@
+import { Injectable } from "@nestjs/common";
 import { type Either, left, right } from "@/core/either";
-import type { AccountRepository } from "../repositories/account-repository";
+import { AccountRepository } from "../repositories/account-repository";
 import { AccountNotFoundError } from "./errors/account-not-found-error";
 import { InsufficientFundsError } from "./errors/insufficient-funds-error";
 import { InvalidWithdrawAmountError } from "./errors/invalid-withdraw-amount-error";
@@ -12,13 +13,14 @@ type WithdrawProps = {
 type WithdrawResponse = Either<
 	AccountNotFoundError | InvalidWithdrawAmountError | InsufficientFundsError,
 	{
-		destination: {
+		origin: {
 			id: string;
 			balance: number;
 		};
 	}
 >;
 
+@Injectable()
 export class WithdrawUseCase {
 	constructor(private accountRepository: AccountRepository) {}
 
@@ -39,7 +41,7 @@ export class WithdrawUseCase {
 		account.balance -= amount;
 
 		return right({
-			destination: {
+			origin: {
 				id: account.id.toString(),
 				balance: account.balance,
 			},

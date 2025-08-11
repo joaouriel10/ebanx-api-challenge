@@ -1,5 +1,7 @@
-import { type Either, left, right } from "@/core/either";
-import type { AccountRepository } from "../repositories/account-repository";
+import { Injectable } from "@nestjs/common";
+import { Either, left, right } from "@/core/either";
+import { Account } from "../../enterprise/entities/account";
+import { AccountRepository } from "../repositories/account-repository";
 import { AccountNotFoundError } from "./errors/account-not-found-error";
 import { InvalidDepositAmountError } from "./errors/invalid-deposit-amount-error";
 
@@ -18,6 +20,7 @@ type DepositResponse = Either<
 	}
 >;
 
+@Injectable()
 export class DepositUseCase {
 	constructor(private accountRepository: AccountRepository) {}
 
@@ -25,11 +28,21 @@ export class DepositUseCase {
 		const account = this.accountRepository.findById(destination);
 
 		if (!account) {
-			return left(new AccountNotFoundError());
-		}
+			const newAccount = Account.create(
+				{
+					balance: amount,
+				},
+				destination,
+			);
 
-		if (amount <= 0) {
-			return left(new InvalidDepositAmountError());
+			this.accountRepository.save(newAccount);
+
+			return right({
+				destination: {
+					id: newAccount.id.toString(),
+					balance: newAccount.balance,
+				},
+			});
 		}
 
 		account.balance += amount;
